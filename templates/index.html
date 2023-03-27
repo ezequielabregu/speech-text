@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Speech to text</title>
+  </head>
+  <body>
+    <h1>Speech to text</h1>
+    <form action="/record" method="POST">
+      <button type="submit" onclick="recording()">Record</button>
+      <span id="recording-status"></span>
+    </form>
+    <br />
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+      <input type="file" name="file" />
+      <button>Upload Audio</button>
+    </form>
+    <script>
+        function recording() {
+          const status = document.getElementById('recording-status');
+          status.innerHTML = 'Recording...';
+        }
+      </script>
+    <br />
+        <h4>{{ text }}</h4>          
+  </body>
+</html>
