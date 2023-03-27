@@ -29,7 +29,7 @@ def upload():
     #requiest the file name
     f = request.files['file']
     #save the audio file
-    f.save('audio.wav')
+    f.save('static/audio.wav')
     return redirect(url_for('transcribe'))  
     #return 'File uploaded successfully'
 
@@ -38,13 +38,13 @@ def transcribe():
     #create a new recognizer instance
     r = sr.Recognizer()
     #use the audio uploaded as a source
-    with sr.AudioFile('audio.wav') as source:
+    with sr.AudioFile('static/audio.wav') as source:
         audio = r.record(source)
         try:    
             #audio to text    
             text = r.recognize_google(audio)
        # write the text to a file
-            with open("output.txt", "w") as file:
+            with open("static/output.txt", "w") as file:
                 file.write(text)            
             return render_template('index.html', text=text)
         
