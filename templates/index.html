@@ -1,26 +1,60 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <body style="background-color:#4A6274;"> 
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+          @font-face {
+          font-family: 'JetBrains';
+          src: url('static/JetBrainsMono-Regular.ttf');
+          font-weight: normal;
+          } 
+          h1, h2, p {
+            color: #ADEFD1FF;      
+          }
+          </style>      
     <title>Speech to text</title>
   </head>
+  <style>
+    body  {
+    background-image: url('static/background.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;  
+    background-size: 100% 100%;
+    font-family: 'JetBrains', sans-serif;
+    }
+        </style>
+
   <body>
+    <br />
+    <br />
     <h1>Speech to text</h1>
+    <br />
+    <p style="font-size:85%"> Record your voice using your mic </p>
     <form action="/record" method="POST">
-      <button type="submit" onclick="recording()">Record</button>
+      <button type="submit" style="font-family: JetBrains; background-color:#79AEB2" onclick="recording()">Record</button>
       <span id="recording-status"></span>
     </form>
     <br />
+    <p style="font-size:85%"> or upload an audio file </p>
     <form action="/upload" method="POST" enctype="multipart/form-data">
-      <input type="file" name="file" />
-      <button>Upload Audio</button>
+      <input type="file" style="font-family: JetBrains; background-color:#79AEB2" name="file" />
+      <br />
+      <br />
+      <button style="font-family: JetBrains; background-color:#79AEB2">Upload Audio</button>
     </form>
     <script>
         function recording() {
-          const status = document.getElementById('recording-status');
+          const status = document.getElementById("recording-status");
+          status.style.color = '#E2725A';
           status.innerHTML = 'Recording...';
         }
       </script>
     <br />
-        <h4>{{ text }}</h4>          
+        <p>{{ text }}</p>
+        <br />
+      <form action="/download" method="get">
+        <button type="submit" style="font-family: JetBrains; background-color:#79AEB2"> Download text </button>
+      </form>           
   </body>
 </html>

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, g
+from flask import Flask, render_template, request, redirect, url_for, send_file
 import speech_recognition as sr
 import os
 
@@ -33,7 +33,10 @@ def upload():
     return redirect(url_for('transcribe'))  
     #return 'File uploaded successfully'
 
-    
+@app.route('/download')
+def download_file():
+    path = "static/output.txt"   
+    return send_file(path, as_attachment=True)
 
 @app.route('/transcribe')
 def transcribe():
