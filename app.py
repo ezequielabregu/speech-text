@@ -50,15 +50,18 @@ def transcribe():
             text = r.recognize_google(audio)
        # write the text to a file
             with open("static/output.txt", "w") as file:
-                file.write(text)            
+                file.write(text)
+                os.remove('static/audio.wav')            
             return render_template('index.html', text=text)
         
         except sr.UnknownValueError:
-            text="Could not understand you"
+            text="Could not understand you. Try Again!"
+            os.remove('static/audio.wav')  
             return render_template('index.html', text=text)
 
         except sr.RequestError as e:
             text = "Could not request results from Google Speech Recognition service; {0}".format(e)    
+            os.remove('static/audio.wav')  
             return render_template('index.html', text=text)
     
 if __name__ == '__main__':

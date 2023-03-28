@@ -9,7 +9,7 @@
           src: url('static/JetBrainsMono-Regular.ttf');
           font-weight: normal;
           } 
-          h1, h2, p {
+          h1, h2, h3, p {
             color: #ADEFD1FF;      
           }
           </style>      
@@ -41,7 +41,8 @@
       <input type="file" style="font-family: JetBrains; background-color:#79AEB2" name="file" />
       <br />
       <br />
-      <button style="font-family: JetBrains; background-color:#79AEB2">Upload Audio</button>
+      <button style="font-family: JetBrains; background-color:#79AEB2" onclick="processing()">Upload Audio</button>
+      <span id="process-status"></span>
     </form>
     <script>
         function recording() {
@@ -49,9 +50,15 @@
           status.style.color = '#E2725A';
           status.innerHTML = 'Recording...';
         }
+        function processing() {
+          const status = document.getElementById("process-status");
+          status.style.color = '#E2725A';
+          status.innerHTML = 'Processing your audio...';
+        }        
       </script>
+      
     <br />
-        <p>{{ text }}</p>
+        <h3>{{ text }}</h3>
         <br />
       <form action="/download" method="get">
         <button type="submit" style="font-family: JetBrains; background-color:#79AEB2"> Download text </button>
