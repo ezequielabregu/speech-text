@@ -19,7 +19,7 @@ def record():
     with sr.Microphone() as source:
         r.adjust_for_ambient_noise(source)        
         audio = r.listen(source)#, timeout=5)
-    with open('audio.wav', 'wb') as f:
+    with open('static/audio.wav', 'wb') as f:
         f.write(audio.get_wav_data())
     return redirect(url_for('transcribe'))   
 
@@ -32,6 +32,8 @@ def upload():
     f.save('static/audio.wav')
     return redirect(url_for('transcribe'))  
     #return 'File uploaded successfully'
+
+    
 
 @app.route('/transcribe')
 def transcribe():
@@ -58,4 +60,3 @@ def transcribe():
     
 if __name__ == '__main__':
     app.run(debug=True)
-
