@@ -5,12 +5,27 @@ import os
 #Crete a new instance Flask class
 app = Flask(__name__)
 
+'''
 # Home
 @app.route('/')
 def index():
     status = ' '
-    return render_template('index.html', status=status)
+    return render_template('index.html')
+'''
 
+@app.route("/", methods=['POST', 'GET'])
+def index():
+    if request.method == "POST":
+        f = request.files['audio_data']
+        with open('audio.wav', 'wb') as audio:
+            f.save(audio)
+        print('file uploaded successfully')
+
+        return render_template('index.html', request="POST")
+    else:
+        return render_template("index.html")
+
+'''
 @app.route('/record', methods=['POST'])
 def record():
     # create a recognizer object
@@ -22,7 +37,7 @@ def record():
     with open('static/audio.wav', 'wb') as f:
         f.write(audio.get_wav_data())
     return redirect(url_for('transcribe'))   
-
+'''
 #Audio uploader
 @app.route('/upload', methods=['POST'])
 def upload():
@@ -43,7 +58,7 @@ def transcribe():
     #create a new recognizer instance
     r = sr.Recognizer()
     #use the audio uploaded as a source
-    with sr.AudioFile('static/audio.wav') as source:
+    with sr.AudioFile('audio.wav') as source:
         audio = r.record(source)
         try:    
             #audio to text    
@@ -51,17 +66,17 @@ def transcribe():
        # write the text to a file
             with open("static/output.txt", "w") as file:
                 file.write(text)
-                os.remove('static/audio.wav')            
+                os.remove('audio.wav')            
             return render_template('index.html', text=text)
         
         except sr.UnknownValueError:
             text="Could not understand you. Try Again!"
-            os.remove('static/audio.wav')  
+            os.remove('audio.wav')  
             return render_template('index.html', text=text)
 
         except sr.RequestError as e:
             text = "Could not request results from Google Speech Recognition service; {0}".format(e)    
-            os.remove('static/audio.wav')  
+            os.remove('audio.wav')  
             return render_template('index.html', text=text)
     
 if __name__ == '__main__':

@@ -29,19 +29,27 @@
     <br />
     <br />
     <h1>Speech to text</h1>
-    <br />
     <p style="font-size:85%"> Record your voice using your mic </p>
-    <form action="/record" method="POST">
-      <button type="submit" style="font-family: JetBrains; background-color:#79AEB2" onclick="recording()">Record</button>
-      <span id="recording-status"></span>
-    </form>
+    
+    <div id="controls">
+      <button id="recordButton">Record</button>
+      <button id="pauseButton" disabled>Pause</button>
+      <button id="stopButton" disabled>Stop</button>
+     </div>
+     <div id="formats">Format: start recording to see sample rate</div>
+     <p><strong>Recordings:</strong></p>
+     <ol id="recordingsList"></ol>
+     <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
+     <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
+     <script src="static/app.js"></script>
+
     <br />
     <p style="font-size:85%"> or upload an audio file </p>
     <form action="/upload" method="POST" enctype="multipart/form-data">
       <input type="file" style="font-family: JetBrains; background-color:#79AEB2" name="file" />
       <br />
       <br />
-      <button style="font-family: JetBrains; background-color:#79AEB2" onclick="processing()">Upload Audio</button>
+      <button style="font-family: JetBrains; background-color:#79AEB2" onclick="processing()">Convert Audio File to Text</button>
       <span id="process-status"></span>
     </form>
     <script>
