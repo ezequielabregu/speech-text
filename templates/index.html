@@ -47,9 +47,13 @@
     <p style="font-size:85%"> or upload an audio file </p>
     <form action="/upload" method="POST" enctype="multipart/form-data">
       <input type="file" style="font-family: JetBrains; background-color:#79AEB2" name="file" />
+      <input type="submit" value="Upload Audio File" style="font-family: JetBrains; background-color:#79AEB2">
+    </form>
       <br />
+      <p style="font-size:65%"> File uploaded: {{ uploadedName }}</p>
       <br />
-      <button style="font-family: JetBrains; background-color:#79AEB2" onclick="processing()">Convert Audio File to Text</button>
+    <form action="/transcribe" method="post">  
+      <button name="transcribe" type="submit" style="font-family: JetBrains; background-color:#79AEB2" onclick="processing()">Convert Audio File to Text</button>
       <span id="process-status"></span>
     </form>
     <script>

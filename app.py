@@ -5,14 +5,6 @@ import os
 #Crete a new instance Flask class
 app = Flask(__name__)
 
-'''
-# Home
-@app.route('/')
-def index():
-    status = ' '
-    return render_template('index.html')
-'''
-
 @app.route("/", methods=['POST', 'GET'])
 def index():
     if request.method == "POST":
@@ -25,27 +17,16 @@ def index():
     else:
         return render_template("index.html")
 
-'''
-@app.route('/record', methods=['POST'])
-def record():
-    # create a recognizer object
-    r = sr.Recognizer()
-    # use the default microphone as the audio source
-    with sr.Microphone() as source:
-        r.adjust_for_ambient_noise(source)        
-        audio = r.listen(source)#, timeout=5)
-    with open('static/audio.wav', 'wb') as f:
-        f.write(audio.get_wav_data())
-    return redirect(url_for('transcribe'))   
-'''
 #Audio uploader
 @app.route('/upload', methods=['POST'])
 def upload():
     #requiest the file name
     f = request.files['file']
     #save the audio file
-    f.save('static/audio.wav')
-    return redirect(url_for('transcribe'))  
+    f.save("audio.wav")
+    print ('Audio file uploaded')
+    return render_template('index.html', uploadedName=f.filename)
+    #return redirect(url_for('transcribe'))  
     #return 'File uploaded successfully'
 
 @app.route('/download')
@@ -53,7 +34,7 @@ def download_file():
     path = "static/output.txt"   
     return send_file(path, as_attachment=True)
 
-@app.route('/transcribe')
+@app.route('/transcribe', methods=['POST'])
 def transcribe():
     #create a new recognizer instance
     r = sr.Recognizer()
