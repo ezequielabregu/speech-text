@@ -5,7 +5,7 @@ import os
 #Crete a new instance Flask class
 app = Flask(__name__)
 
-server_path = "" #"/var/www/html/flask_app/"
+server_path = "/var/www/html/apps/speech_text"
 audio_path = server_path + "audio.wav"
 text_path = server_path + "output.txt"
 
