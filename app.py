@@ -5,7 +5,7 @@ import os
 #Crete a new instance Flask class
 app = Flask(__name__)
 
-server_path = "/var/www/html/apps/speech_text"
+server_path = "/var/www/html/apps/speech_text/"
 audio_path = server_path + "audio.wav"
 text_path = server_path + "output.txt"
 
@@ -65,5 +65,5 @@ def transcribe():
             return render_template('index.html', text=text)
     
 if __name__ == '__main__':
-    app.run()
-#    app.run(debug=True)
+#    app.run()
+    app.run(debug=True)
