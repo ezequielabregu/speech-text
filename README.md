@@ -16,6 +16,7 @@ This voice-to-text software is particularly helpful for individuals who have dif
 
 ## Features
 
+- Compatible with desktop (Windows, Mac, Linux) and mobile (Android, IOS) web browsers.
 - Built-in speech recorder & player
 - Audio file uploader
 - Speech to text converter
