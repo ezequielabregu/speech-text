@@ -65,5 +65,6 @@ def transcribe():
             return render_template('index.html', text=text)
     
 if __name__ == '__main__':
+    app.run(host="0.0.0.0", port=5000)
 #    app.run()
-    app.run(debug=True)
+#    app.run(debug=True)
