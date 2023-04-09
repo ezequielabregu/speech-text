@@ -9,7 +9,7 @@ People from all over the world, including students, teachers, writers, and blogg
 This voice-to-text software is particularly helpful for individuals who have difficulty using their hands due to trauma, dyslexia, or other disabilities that limit the use of traditional input devices.
 
 **Online demo**:
-[https://speechtext.ezequielabregu.com/](https://speech.ezequielabregu.com/)
+[https://speechtext.ezequielabregu.com/](https://speechtext.ezequielabregu.com/)
 
 &nbsp;
 ![Speech Text](/static/speechtext_demo.png)
