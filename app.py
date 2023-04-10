@@ -5,9 +5,16 @@ import os
 #Crete a new instance Flask class
 app = Flask(__name__)
 
-server_path = "/var/www/html/apps/speech_text/"
+server_path = ""#"/var/www/html/apps/speech_text/"
 audio_path = server_path + "audio.wav"
 text_path = server_path + "output.txt"
+
+lastDropdown = [""]
+
+def dropdown():
+    language = request.form.get("dropdown", False)
+    lastDropdown[0] = str(language)
+    return lastDropdown[0]
 
 @app.route("/", methods=['POST', 'GET'])
 def index():
@@ -40,16 +47,17 @@ def download_file():
 
 @app.route('/transcribe', methods=['POST'])
 def transcribe():
+    print(dropdown())    
     #create a new recognizer instance
     r = sr.Recognizer()
     #use the audio uploaded as a source
     with sr.AudioFile(audio_path) as source:
         audio = r.record(source)
-        try:    
+        try: 
             #audio to text    
-            text = r.recognize_google(audio)
+            text = r.recognize_google(audio, language=dropdown())
        # write the text to a file
-            with open(text_path, "w") as file:
+            with open(text_path, "w", encoding='utf-8') as file:
                 file.write(text)
                 os.remove(audio_path)            
             return render_template('index.html', text=text)
@@ -65,6 +73,6 @@ def transcribe():
             return render_template('index.html', text=text)
     
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000)
+#    app.run(host="0.0.0.0", port=5000)
 #    app.run()
-#    app.run(debug=True)
+    app.run(debug=True)

@@ -28,35 +28,49 @@
   <body>
     <br />
     <br />
-    <h1>Speech to text</h1>
+    <h1>Speech text</h1>
     <p style="font-size:85%"> Record your voice using your mic </p>
-    
+   
     <div id="controls">
       <button id="recordButton">Record</button>
       <button id="pauseButton" disabled>Pause</button>
       <button id="stopButton" disabled>Stop</button>
      </div>
      <div id="formats">Format: start recording to see sample rate</div>
-     <p><strong>Recordings:</strong></p>
+     <p>Recordings:</p>
      <ol id="recordingsList"></ol>
      <!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
      <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
      <script src="static/app.js"></script>
 
     <br />
-    <p style="font-size:85%"> or upload an audio file </p>
+    <p style="font-size:85%">... or upload an audio file (wav) </p>
     <form action="/upload" method="POST" enctype="multipart/form-data">
       <input type="file" style="font-family: JetBrains; background-color:#79AEB2" name="file" />
       <input type="submit" value="Upload Audio File" style="font-family: JetBrains; background-color:#79AEB2">
     </form>
-      <br />
       <p style="font-size:65%"> File uploaded: {{ uploadedName }}</p>
       <br />
-    <form action="/transcribe" method="post">  
-      <button name="transcribe" type="submit" style="font-family: JetBrains; background-color:#79AEB2" onclick="processing()">Convert Audio File to Text</button>
+    <form action="/transcribe" method="post">
+      
+      <label for="dropdown">Language:</label>
+      <select name="dropdown" id="dropdown">
+        <option value="en-US">English</option>
+        <option value="es-ES">Español</option>
+        <option value="es-AR">Español(Arg)</option>
+        <option value="fr-FR">French</option>
+        <option value="de-DE">Deutsch</option>
+      </select>
+
+      <br />
+      <br />
+      <br />
+
+      <button name="transcribe" type="submit" style="font-family: JetBrains; background-color:#79AEB2" onclick="processing()">CONVERT SPEECH > TEXT</button>
       <span id="process-status"></span>
-    </form>
-    <script>
+    </form>     
+
+      <script>
         function recording() {
           const status = document.getElementById("recording-status");
           status.style.color = '#E2725A';
