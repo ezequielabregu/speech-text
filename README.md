@@ -1,6 +1,6 @@
 # Speech text
 
-Default language: English
+Languages: English, Spanish, Fench, German.
 
 Speech text is a free speech-to-text tool that can help you transcribe notes, documents, books, reports, or blog posts simply by using your voice.
 
@@ -16,7 +16,8 @@ This voice-to-text software is particularly helpful for individuals who have dif
 
 ## Features
 
-- Compatible with desktop (Windows, Mac, Linux) and mobile (Android, IOS) web browsers.
+- Compatible with desktop (Windows, Mac, Linux) and mobile (Android, IOS) web browsers
+- Multi-language
 - Built-in speech recorder & player
 - Audio file uploader
 - Speech to text converter
