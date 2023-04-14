@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <body style="background-color:#4A6274;"> 
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+          @font-face {
+          font-family: 'JetBrains';
+          src: url('static/JetBrainsMono-Regular.ttf');
+          font-weight: normal;
+          } 
+          h1, h2, h3, p {
+            color: #ADEFD1FF;
+            font-family: 'JetBrains', sans-serif;
+            }      
+          </style>      
+  </head>
+  <body>
+    <h2>Transcription Completed Successfully!</h2>
+    <p>{{ text }}</p>
+    <br />
+  <form action="/download" method="get">
+    <button type="submit" style="font-family: JetBrains; background-color:#79AEB2"> Download text </button>
+  </form>
+  <br />
+  <form action="/">
+    <button type="submit" style="font-family: JetBrains; background-color:#79AEB2"> Try again!</button>
+</form>              
+  </body>
+</html>

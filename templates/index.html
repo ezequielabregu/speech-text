@@ -51,24 +51,40 @@
     </form>
       <p style="font-size:65%"> File uploaded: {{ uploadedName }}</p>
       <br />
-    <form action="/transcribe" method="post">
+
+      <form action="{{ url_for('submit_option') }}" method="POST">   
+        <label for="dropdown">Language:</label>
+        <select name="dropdown" id="dropdown">
+          <option value="en-US">English</option>
+          <option value="es-ES">Español</option>
+          <option value="es-AR">Español(Arg)</option>
+          <option value="fr-FR">French</option>
+          <option value="de-DE">Deutsch</option>
+        </select>
+      </form>
+      <script>
+        document.getElementById("dropdown").addEventListener("change", function() {
+          var selectedOption = document.getElementById("dropdown").value;
+          sendData(selectedOption);
+        });
+      </script>
+      <script>
+        function sendData(selectedOption) {
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", "/submit-option");
+          xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+          xhr.send(JSON.stringify({"selectedOption": selectedOption}));
+        }
+      </script>
+
       
-      <label for="dropdown">Language:</label>
-      <select name="dropdown" id="dropdown">
-        <option value="en-US">English</option>
-        <option value="es-ES">Español</option>
-        <option value="es-AR">Español(Arg)</option>
-        <option value="fr-FR">French</option>
-        <option value="de-DE">Deutsch</option>
-      </select>
-
+      
       <br />
       <br />
-      <br />
-
-      <button name="transcribe" type="submit" style="font-family: JetBrains; background-color:#79AEB2" onclick="processing()">CONVERT SPEECH > TEXT</button>
-      <span id="process-status"></span>
-    </form>     
+      <br />      
+      <form action="{{ url_for('start_process') }}">
+        <button type="submit" style="font-family: JetBrains; background-color:#79AEB2">CONVERT SPEECH > TEXT</button>
+    </form>    
 
       <script>
         function recording() {

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <body style="background-color:#4A6274;"> 
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+          @font-face {
+          font-family: 'JetBrains';
+          src: url('static/JetBrainsMono-Regular.ttf');
+          font-weight: normal;
+          } 
+          h1, h2, h3, p {
+            color: #ADEFD1FF;      
+          }
+          </style>
+  <style>
+    body  {
+    background-image: url('static/background.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;  
+    background-size: 100% 100%;
+    font-family: 'JetBrains', sans-serif;
+    }
+        </style>
+        <br />
+        <br />
+        <br />                    
+    <title>Processing Page</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        setInterval(function() {
+          $.ajax({
+            url: "{{ url_for('check_process') }}",
+            type: "GET",
+            success: function(data) {
+              if (data === "completed") {
+                window.location.replace("{{ url_for('result') }}");
+              }
+            },
+            error: function() {
+              console.log("Error checking process status");
+            }
+          });
+        }, 2000);
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Please wait, we're processing your audio...</h1>
+  </body>
+</html>
