@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" type="text/css" href="static/index-style.css">
+
     <body style="background-color:#4A6274;"> 
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <style>
@@ -15,6 +17,7 @@
           </style>      
     <title>Speech to text</title>
   </head>
+
   <style>
     body  {
     background-image: url('static/background.png');
@@ -26,8 +29,6 @@
         </style>
 
   <body>
-    <br />
-    <br />
     <h1>Speech text</h1>
     <p style="font-size:85%"> Record your voice using your mic </p>
    
@@ -43,13 +44,21 @@
      <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
      <script src="static/app.js"></script>
 
-    <br />
     <p style="font-size:85%">... or upload an audio file (wav) </p>
     <form action="/upload" method="POST" enctype="multipart/form-data">
       <input type="file" style="font-family: JetBrains; background-color:#79AEB2" name="file" />
-      <input type="submit" value="Upload Audio File" style="font-family: JetBrains; background-color:#79AEB2">
+      <input type="submit" onclick="uploading()" value="Upload Audio" style="font-family: JetBrains; background-color:#79AEB2">
+      <span id="upload-status"></span>
     </form>
-      <p style="font-size:65%"> File uploaded: {{ uploadedName }}</p>
+
+    <script>
+      function uploading() {
+        const status = document.getElementById("upload-status");
+        status.innerHTML = "Uploading file...";
+      }
+    </script>
+
+      <p style="font-size:75%"> File uploaded: {{ uploadedName }}</p>
       <br />
 
       <form action="{{ url_for('submit_option') }}" method="POST">   
@@ -77,11 +86,7 @@
         }
       </script>
 
-      
-      
-      <br />
-      <br />
-      <br />      
+      <br />     
       <form action="{{ url_for('start_process') }}">
         <button type="submit" style="font-family: JetBrains; background-color:#79AEB2">CONVERT SPEECH > TEXT</button>
     </form>    
@@ -98,12 +103,6 @@
           status.innerHTML = 'Processing your audio...';
         }        
       </script>
-      
-    <br />
-        <h3>{{ text }}</h3>
-        <br />
-      <form action="/download" method="get">
-        <button type="submit" style="font-family: JetBrains; background-color:#79AEB2"> Download text </button>
-      </form>           
+              
   </body>
 </html>

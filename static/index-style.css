@@ -1,0 +1,138 @@
+body {
+    background-image: url('static/background.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;  
+    background-size: 100% 100%;
+    font-family: 'JetBrains', sans-serif;
+    text-align: left;
+  }
+  
+  h1, h2, h3, p {
+    color: #ADEFD1FF;
+  }
+  
+  #controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #controls button {
+    margin-right: 10px;
+  }
+  
+  #formats,
+  #recordingsList {
+    display: inline-block;
+    margin: 0;
+    font-size: 85%;
+    text-align: left;
+  }
+  
+  #recordingsList li {
+    list-style: none;
+  }
+  
+  button {
+    font-family: 'JetBrains', sans-serif;
+    background-color: #79aeb2;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5em 1em;
+    margin-right: 1em;
+    text-align: center;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    color: #999;
+  }
+
+  form {
+    margin-bottom: 20px;
+  }
+  
+  input[type="file"] {
+    font-family: JetBrains;
+    background-color: #79AEB2;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  input[type="submit"] {
+    font-family: JetBrains;
+    background-color: #79AEB2;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  select {
+    font-family: JetBrains;
+    background-color: #79AEB2;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button[type="submit"] {
+    font-family: JetBrains;
+    background-color: #79AEB2;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #4A6274;
+  }
+  
+  #upload-status {
+    font-size: 14px;
+    color: #ADEFD1FF;
+  }
+  
+  p {
+    font-size: 14px;
+    color: #ADEFD1FF;
+  }
+  
+  form > * {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  form label {
+    margin-right: 10px;
+    font-size: 14px;
+    color: #ADEFD1FF;
+  }
+  
+  form select {
+    margin-right: 10px;
+  }
+  
+  @media only screen and (max-width: 600px) {
+    #controls {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    #controls button {
+      margin: 10px 0px;
+    }
+  }
+  

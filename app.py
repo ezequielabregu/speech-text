@@ -14,7 +14,7 @@ server_path = ""#"/var/www/html/apps/speech_text/"
 audio_path = server_path + "audio.wav"
 text_path = server_path + "output.txt"
 
-selected_option = [""]
+selected_option = ["en-US"]
 
 @app.route('/submit-option', methods=['POST'])
 def submit_option():
@@ -83,7 +83,7 @@ def check_process():
         return "completed"
 
 def transcribe(selected_option):
-    #print ("selected option" + str(selected_option))
+    print ("selected option: " + str(selected_option))
     #create a new recognizer instance
     r = sr.Recognizer()
     #use the audio uploaded as a source
